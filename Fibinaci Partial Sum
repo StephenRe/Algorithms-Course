@@ -1,0 +1,31 @@
+# Uses python3
+import sys
+
+def fibonacci_partial_sum(m, n):
+    if n == 0:
+        return 0
+    fibindex = n % 60
+    if fibindex == 0:
+        return 0
+    fibs = [0, 1]
+    sums = 1
+    sums2 = 0
+    for i in range(2, m):
+        a = fibs[0]%10 + fibs[1]%10
+        fibs[0] = fibs[1]
+        fibs[1] = a
+        sums += fibs[1]%10
+        # print(1,sums)
+    for i in range(m-1, fibindex):
+        a = fibs[0]%10 + fibs[1]%10
+        fibs[0] = fibs[1]
+        fibs[1] = a
+        sums2 += fibs[1]%10
+        # print('fibs', fibs)
+        # print(2, sums2)
+    return sums2%10
+
+if __name__ == '__main__':
+    input = sys.stdin.read();
+    from_, to = map(int, input.split())
+    print(fibonacci_partial_sum(from_, to))
